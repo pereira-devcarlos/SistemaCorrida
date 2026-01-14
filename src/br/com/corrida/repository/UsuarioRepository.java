@@ -120,6 +120,34 @@ public class UsuarioRepository {
         }
     }
 
+    public void atualizar(Usuario usuarioAtualizado) {
+        ArrayList<Usuario> usuariosAtualizados = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                int usuarioId = Integer.parseInt(parts[0]);
+                if (usuarioId == usuarioAtualizado.getId()) {
+                    usuariosAtualizados.add(usuarioAtualizado);
+                } else {
+                    Usuario usuario = new Usuario(parts[1], parts[2]);
+                    usuario.setId(usuarioId);
+                    usuariosAtualizados.add(usuario);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Usuario usuario : usuariosAtualizados) {
+                writer.write(usuario.getId() + ";" + usuario.getNome() + ";" + usuario.getTelefone());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Getters e Setters
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;

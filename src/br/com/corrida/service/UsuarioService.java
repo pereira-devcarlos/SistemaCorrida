@@ -4,8 +4,10 @@ import br.com.corrida.model.Usuario;
 import br.com.corrida.repository.UsuarioRepository;
 
 public class UsuarioService {
+    // Atributos
     private UsuarioRepository usuarioRepository;
 
+    // Construtor
     public UsuarioService() {
         this.usuarioRepository = new UsuarioRepository();
         this.usuarioRepository.carregarDados();
@@ -49,6 +51,19 @@ public class UsuarioService {
             usuarioRepository.getUsuarios().remove(usuario);
             System.out.println("Usuário: Nome= " + usuario.getNome() + "  Telefone= " + usuario.getTelefone() + " deletado com sucesso.");
             usuarioRepository.deletar(usuario.getId());
+        } else {
+            System.out.println("Erro: Usuário não encontrado.");
+        }
+    }
+
+    public void atualizarUsuario(Usuario usuario) {
+        // Lógica para atualizar o usuário
+        Usuario usuarioExistente = usuarioRepository.buscarPorId(usuario.getId());
+        if (usuarioExistente != null) {
+            usuarioExistente.setNome(usuario.getNome());
+            usuarioExistente.setTelefone(usuario.getTelefone());
+            usuarioRepository.atualizar(usuarioExistente);
+            System.out.println("Usuário atualizado com sucesso.");
         } else {
             System.out.println("Erro: Usuário não encontrado.");
         }
