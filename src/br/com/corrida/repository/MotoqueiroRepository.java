@@ -51,6 +51,16 @@ public class MotoqueiroRepository {
         return maxId + 1;
     }
 
+    public void salvar(Motoqueiro motoqueiro) {
+        // Lógica para salvar o motoqueiro no banco de dados
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write(motoqueiro.getId() + ";" + motoqueiro.getNome() + ";" + motoqueiro.getTelefone() + ";" + motoqueiro.getPlaca() + ";" + motoqueiro.isDisponivel());
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Getters e Setters
     public ArrayList<Motoqueiro> getMotoqueiros() {
         return motoqueiros;
