@@ -13,5 +13,8 @@ public class App {
 
         System.out.println("Usuários cadastrados:");
         System.out.println(usuarioService);
+
+        MotoqueiroService motoqueiroService = new MotoqueiroService();
+        motoqueiroService.cadastrarMotoqueiro(new Motoqueiro("Carlos", "99887766", "XYZ-1234", true));
     }
 }
