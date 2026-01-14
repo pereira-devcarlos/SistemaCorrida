@@ -8,10 +8,19 @@ public class UsuarioService {
 
     public UsuarioService() {
         this.usuarioRepository = new UsuarioRepository();
+        this.usuarioRepository.carregarDados();
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioService{" +
+                "usuarioRepository=" + usuarioRepository +
+                '}';
     }
 
     public void cadastrarUsuario(Usuario usuario) {
         // Lógica para cadastrar o usuário
         usuarioRepository.salvar(usuario);
+        usuarioRepository.getUsuarios().add(usuario);
     }
 }
