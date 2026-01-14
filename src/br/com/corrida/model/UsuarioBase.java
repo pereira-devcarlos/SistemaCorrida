@@ -2,13 +2,12 @@ package br.com.corrida.model;
 
 public abstract class UsuarioBase {
     // Atributos
-    private int id;
+    private int id = 0;
     private String nome;
     private String telefone;
 
     // Construtor
-    public UsuarioBase(int id, String nome, String telefone) {
-        this.id = id;
+    public UsuarioBase(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }

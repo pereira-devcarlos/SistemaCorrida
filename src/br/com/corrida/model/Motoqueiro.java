@@ -6,8 +6,8 @@ public class Motoqueiro extends UsuarioBase {
     private boolean disponivel;
 
     // Construtor
-    public Motoqueiro(int id, String nome, String telefone, String placa, boolean disponivel) {
-        super(id, nome, telefone);
+    public Motoqueiro(String nome, String telefone, String placa, boolean disponivel) {
+        super(nome, telefone);
         this.placa = placa;
         this.disponivel = disponivel;
     }
