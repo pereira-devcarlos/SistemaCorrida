@@ -3,13 +3,13 @@ package br.com.corrida.model;
 public class Motoqueiro extends UsuarioBase {
     // Atributos
     private String placa;
-    private String modelo;
+    private boolean disponivel;
 
     // Construtor
-    public Motoqueiro(int id, String nome, String telefone, String placa, String modelo) {
+    public Motoqueiro(int id, String nome, String telefone, String placa, boolean disponivel) {
         super(id, nome, telefone);
         this.placa = placa;
-        this.modelo = modelo;
+        this.disponivel = disponivel;
     }
 
     // Getters e Setters
@@ -21,11 +21,11 @@ public class Motoqueiro extends UsuarioBase {
         this.placa = placa;
     }
 
-    public String getModelo() {
-        return modelo;
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }
