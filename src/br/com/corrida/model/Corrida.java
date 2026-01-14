@@ -12,11 +12,9 @@ public class Corrida {
 
     // Construtor
     public Corrida(Usuario usuario, Motoqueiro motoqueiro, int valor) {
-        id++; // Incrementa o ID para cada nova corrida
         this.usuario = usuario;
         this.motoqueiro = motoqueiro;
         this.valor = valor;
-        this.status = StatusCorrida.SOLICITADA; // Status inicial
     }
 
     // Getters e Setters
