@@ -11,11 +11,15 @@ import br.com.corrida.model.Usuario;
 
 public class UsuarioRepository {
     private ArrayList<Usuario> usuarios;
+    // Definindo o caminho do arquivo de dados
     String filename = "C:\\Users\\monic\\OneDrive\\Documentos\\SistemaCorrida\\data\\usuarios.txt";
+
+    public UsuarioRepository() {
+        this.usuarios = new ArrayList<Usuario>();
+    }
 
     public void carregarDados() {
         // Lógica para carregar os dados dos usuários do banco de dados para a memória usando um ArrayList
-        usuarios = new ArrayList<Usuario>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -24,6 +28,7 @@ public class UsuarioRepository {
                 String nome = parts[1];
                 String telefone = parts[2];
                 Usuario usuario = new Usuario(nome, telefone);
+                usuario.setId(id);
                 usuarios.add(usuario);
             }
         } catch (IOException e) {
@@ -87,6 +92,32 @@ public class UsuarioRepository {
             e.printStackTrace();
         }
         return null; // Retorna null se o usuário não for encontrado
+    }
+
+    public void deletar(int id) {
+        ArrayList<Usuario> usuariosAtualizados = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                int usuarioId = Integer.parseInt(parts[0]);
+                if (usuarioId != id) {
+                    Usuario usuario = new Usuario(parts[1], parts[2]);
+                    usuario.setId(usuarioId);
+                    usuariosAtualizados.add(usuario);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Usuario usuario : usuariosAtualizados) {
+                writer.write(usuario.getId() + ";" + usuario.getNome() + ";" + usuario.getTelefone());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Getters e Setters

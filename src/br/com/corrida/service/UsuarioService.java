@@ -36,4 +36,21 @@ public class UsuarioService {
             usuarioRepository.getUsuarios().add(usuario);
         }
     }
+    
+    public void deletarUsuario(String telefone) {
+        Usuario usuario = null;
+        for (Usuario u : usuarioRepository.getUsuarios()) {
+            if (u.getTelefone().equals(telefone)) {
+                usuario = u;
+                break;
+            }
+        }
+        if (usuario != null) {
+            usuarioRepository.getUsuarios().remove(usuario);
+            System.out.println("Usuário: Nome= " + usuario.getNome() + "  Telefone= " + usuario.getTelefone() + " deletado com sucesso.");
+            usuarioRepository.deletar(usuario.getId());
+        } else {
+            System.out.println("Erro: Usuário não encontrado.");
+        }
+    }
 }
