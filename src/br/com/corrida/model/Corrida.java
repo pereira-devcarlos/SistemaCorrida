@@ -19,20 +19,46 @@ public class Corrida {
         this.status = StatusCorrida.SOLICITADA; // Status inicial
     }
 
-    // Getters
+    // Getters e Setters
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Motoqueiro getMotoqueiro() {
         return motoqueiro;
     }
+
+    public void setMotoqueiro(Motoqueiro motoqueiro) {
+        this.motoqueiro = motoqueiro;
+    }
+
     public int getValor() {
         return valor;
     }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
     public StatusCorrida getStatus() {
         return status;
-    }    
+    }
+
+    public void setStatus(StatusCorrida status) {
+        this.status = status;
+    }
+
+    
 }
