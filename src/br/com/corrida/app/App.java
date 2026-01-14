@@ -16,5 +16,6 @@ public class App {
 
         MotoqueiroService motoqueiroService = new MotoqueiroService();
         motoqueiroService.cadastrarMotoqueiro(new Motoqueiro("Carlos", "99887766", "XYZ-1234", true));
+        motoqueiroService.cadastrarMotoqueiro(new Motoqueiro("Carlos", "11887766", "XYZ-1234", true));
     }
 }

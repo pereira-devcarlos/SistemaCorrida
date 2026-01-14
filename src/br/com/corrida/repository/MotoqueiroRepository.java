@@ -59,6 +59,18 @@ public class MotoqueiroRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // Adiciona o motoqueiro à lista em memória
+        motoqueiros.add(motoqueiro);
+    }
+
+    public Motoqueiro buscarPorTelefone(String telefone) {
+        // Lógica para buscar um motoqueiro pelo telefone
+        for (Motoqueiro motoqueiro : motoqueiros) {
+            if (motoqueiro.getTelefone().equals(telefone)) {
+                return motoqueiro;
+            }
+        }
+        return null;
     }
 
     // Getters e Setters

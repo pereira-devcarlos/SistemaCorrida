@@ -15,7 +15,12 @@ public class MotoqueiroService {
 
     public void cadastrarMotoqueiro(Motoqueiro motoqueiro) {
         // Lógica para cadastrar um novo motoqueiro
-        motoqueiro.setId(this.motoqueiroRepository.gerarNovoId());
-        this.motoqueiroRepository.salvar(motoqueiro);
+        if (motoqueiroRepository.buscarPorTelefone(motoqueiro.getTelefone()) != null) {
+            System.out.println("Erro: Já existe um motoqueiro cadastrado com este telefone.");
+        } else {
+            System.out.println("Motoqueiro " + motoqueiro.getNome() + " cadastrado com sucesso!");
+            motoqueiro.setId(this.motoqueiroRepository.gerarNovoId());
+            this.motoqueiroRepository.salvar(motoqueiro);
+        }
     }
 }
