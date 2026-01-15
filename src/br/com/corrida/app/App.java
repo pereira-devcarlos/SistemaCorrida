@@ -49,6 +49,8 @@ public class App {
                             int opcaoUsuario = scanner.nextInt();
                             if (opcaoUsuario == 1) {
                                 System.out.println("Solicitação de corrida selecionada.");
+                                System.out.print("Digite a distância da corrida em km: ");
+                                double distancia = scanner.nextDouble();
                                 Corrida novaCorrida = new Corrida();
                                 novaCorrida.setUsuario(usuario);
                                 corridaService.solicitarCorrida(novaCorrida);

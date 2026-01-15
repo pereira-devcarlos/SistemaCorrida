@@ -7,6 +7,7 @@ public class Corrida {
     private int id = 0;
     private Usuario usuario;
     private Motoqueiro motoqueiro;
+    private double distancia;
     private int valor;
     private StatusCorrida status;
 
@@ -42,6 +43,14 @@ public class Corrida {
 
     public void setMotoqueiro(Motoqueiro motoqueiro) {
         this.motoqueiro = motoqueiro;
+    }
+
+    public double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
     }
 
     public int getValor() {
