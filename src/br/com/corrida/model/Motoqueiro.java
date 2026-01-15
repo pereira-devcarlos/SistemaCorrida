@@ -7,10 +7,10 @@ public class Motoqueiro extends UsuarioBase {
     private double contaBancaria;
 
     // Construtor
-    public Motoqueiro(String nome, String telefone, String placa, boolean disponivel) {
+    public Motoqueiro(String nome, String telefone, String placa) {
         super(nome, telefone);
         this.placa = placa;
-        this.disponivel = disponivel;
+        this.disponivel = false;
     }
 
     // Getters e Setters

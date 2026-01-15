@@ -164,6 +164,31 @@ public class App {
                         } else {
                             System.out.println("\nErro: Nome de usuário ou telefone inválido.");
                         }
+                    } else
+                        // Caso de cadastro de motoqueiro
+                    if (opcaoMotoqueiro == 2) {
+                        System.out.println("Cadastro de motoqueiro selecionado.");
+                        System.out.print("Digite o nome do motoqueiro: ");
+                        String nomeMotoqueiro = scanner.next();
+                        System.out.print("Digite o telefone do motoqueiro: ");
+                        String telefoneMotoqueiro;
+                        // Validação do telefone com 8 dígitos
+                        do {
+                            telefoneMotoqueiro = scanner.next();
+                            if (telefoneMotoqueiro.length() != 8) {
+                                System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
+                            }
+                        } while (telefoneMotoqueiro.length() != 8);
+                        System.out.print("Digite a placa da moto: ");
+                        String placaMoto = scanner.next();
+
+                        // Criar e cadastrar um novo motoqueiro
+                        Motoqueiro novoMotoqueiro = new Motoqueiro(nomeMotoqueiro, telefoneMotoqueiro, placaMoto);
+                        motoqueiroService.cadastrarMotoqueiro(novoMotoqueiro);
+                    } else if (opcaoMotoqueiro == 3) {
+                        System.out.println("Voltando ao Menu Inicial.");
+                    } else {
+                        System.out.println("Opção inválida. Voltando ao Menu Inicial.");
                     }
 
                     break;

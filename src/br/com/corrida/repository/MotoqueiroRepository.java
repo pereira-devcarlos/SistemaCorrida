@@ -34,9 +34,10 @@ public class MotoqueiroRepository {
                 String placa = parts[3];
                 boolean disponivel = Boolean.parseBoolean(parts[4]);
                 double contaBancaria = Double.parseDouble(parts[5]);
-                Motoqueiro motoqueiro = new Motoqueiro(nome, telefone, placa, disponivel);
+                Motoqueiro motoqueiro = new Motoqueiro(nome, telefone, placa);
                 motoqueiro.setContaBancaria(contaBancaria);
                 motoqueiro.setId(id);
+                motoqueiro.setDisponivel(disponivel);
                 motoqueiros.add(motoqueiro);
             }
         } catch (IOException e) {

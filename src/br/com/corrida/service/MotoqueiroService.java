@@ -40,7 +40,6 @@ public class MotoqueiroService {
 
     public void atualizarDisponibilidade(Motoqueiro motoqueiro){
         motoqueiro.setDisponivel(!motoqueiro.isDisponivel());
-        System.out.println("\nDepuração: " + motoqueiro.isDisponivel());
         motoqueiroRepository.atualizar(motoqueiro);
     }
 
