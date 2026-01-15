@@ -3,6 +3,7 @@ package br.com.corrida.service;
 import br.com.corrida.model.*;
 import br.com.corrida.enums.StatusCorrida;
 import br.com.corrida.repository.*;
+import br.com.corrida.util.MenuUtil;
 
 public class CorridaService {
     private CorridaRepository corridaRepository;

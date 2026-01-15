@@ -55,7 +55,8 @@ public class MenuUtil {
         System.out.println("\nFormas de Pagamento:");
         System.out.println("1. Dinheiro");
         System.out.println("2. Cartão de Crédito");
-        System.out.println("3. Carteira Digital");
+        System.out.println("3. Cartão de Débito");
+        System.out.println("4. Pix");
         System.out.print("Escolha uma forma de pagamento: ");
     }
 }
