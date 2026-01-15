@@ -18,6 +18,14 @@ public class CorridaService {
     public void solicitarCorrida(Corrida corrida) {
         corrida.setStatus(StatusCorrida.SOLICITADA);
         corrida.setId(corridaRepository.gerarNovoId());
+        corrida.setValor((int) calcularValorCorrida(corrida.getDistancia()));
+        System.out.println("Corrida solicitada com sucesso. ID da corrida: " + corrida.getId());
+        // Aguardar disponibilidade de motoqueiro
+        try {
+            Thread.sleep(2000); // Simula tempo de espera
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if (motoqueiroRepository.listarDisponiveis().size() > 0) {
             Motoqueiro motoqueiro = motoqueiroRepository.listarDisponiveis().get(0);
@@ -52,5 +60,10 @@ public class CorridaService {
             corridaRepository.salvar(corrida);
             System.out.println("Corrida finalizada sem motoqueiro disponível.");
         }
+    }
+
+    public double calcularValorCorrida(double distancia) {
+        double valorPorKm = 5.0; // Exemplo de valor por km
+        return distancia * valorPorKm;
     }
 }
