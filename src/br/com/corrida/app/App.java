@@ -42,7 +42,8 @@ public class App {
                         } while (telefoneUsuario.length() != 8);
 
                         Usuario usuario = usuarioService.buscarPorTelefone(telefoneUsuario);
-                        if (usuario != null && usuario.getNome().equals(nomeUsuario)) {
+                        String nomeMinusculo = nomeUsuario.toLowerCase();
+                        if (usuario != null && usuario.getNome().toLowerCase().equals(nomeMinusculo)) {
                             System.out.println("Login bem-sucedido. Bem-vindo, " + usuario.getNome() + "!");
                             // Menu do usuário após login
                             MenuUtil.exibirMenuUsuario();
@@ -52,7 +53,6 @@ public class App {
                                 System.out.print("Digite a distância da corrida em km: ");
                                 double distancia = scanner.nextDouble();
                                 Corrida novaCorrida = new Corrida(usuario, distancia);
-                                System.out.println("Valor estimado da corrida: R$ " + corridaService.calcularValorCorrida(distancia));
                                 corridaService.solicitarCorrida(novaCorrida);
                             } else if (opcaoUsuario == 2) {
                                 System.out.println("Voltando ao Menu Inicial.");

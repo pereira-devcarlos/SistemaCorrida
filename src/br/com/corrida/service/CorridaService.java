@@ -20,8 +20,10 @@ public class CorridaService {
         corrida.setId(corridaRepository.gerarNovoId());
         corrida.setValor(calcularValorCorrida(corrida.getDistancia()));
         System.out.println("Corrida solicitada com sucesso. ID da corrida: " + corrida.getId());
+        System.out.println("Valor estimado: R$ " + corrida.getValor());
         // Aguardar disponibilidade de motoqueiro
         try {
+            System.out.println("Aguardando motoqueiro disponível...");
             Thread.sleep(2000); // Simula tempo de espera
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -42,6 +44,7 @@ public class CorridaService {
         System.out.println("Corrida iniciada com o motoqueiro: " + motoqueiro.getNome());
         // Depois de 3s, finalizar a corrida
         try {
+            System.out.println("A corrida está em andamento...");
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -64,6 +67,7 @@ public class CorridaService {
 
     public double calcularValorCorrida(double distancia) {
         double valorPorKm = 5.0; // Exemplo de valor por km
-        return distancia * valorPorKm;
+        double valor = distancia * valorPorKm;
+        return (valor < 10.0) ? 10.0 : valor; // Valor mínimo de 10.0
     }
 }

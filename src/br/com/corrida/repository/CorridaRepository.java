@@ -26,7 +26,7 @@ public class CorridaRepository {
             while ((linha = reader.readLine()) != null) {
                 String[] partes = linha.split(";");
                 if (partes.length == 5) {
-                    Corrida corrida = new Corrida(null, Integer.parseInt(partes[3]));
+                    Corrida corrida = new Corrida(null, Double.parseDouble(partes[3]));
                     corrida.setId(Integer.parseInt(partes[0]));
                     corrida.setMotoqueiro(null);
                     // Note: Usuario and Motoqueiro should be set by their respective services
