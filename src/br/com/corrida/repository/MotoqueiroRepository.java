@@ -31,7 +31,9 @@ public class MotoqueiroRepository {
                 String telefone = parts[2];
                 String placa = parts[3];
                 boolean disponivel = Boolean.parseBoolean(parts[4]);
+                double contaBancaria = Double.parseDouble(parts[5]);
                 Motoqueiro motoqueiro = new Motoqueiro(nome, telefone, placa, disponivel);
+                motoqueiro.setContaBancaria(contaBancaria);
                 motoqueiro.setId(id);
                 motoqueiros.add(motoqueiro);
             }
@@ -54,7 +56,7 @@ public class MotoqueiroRepository {
     public void salvar(Motoqueiro motoqueiro) {
         // Lógica para salvar o motoqueiro no banco de dados
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            writer.write(motoqueiro.getId() + ";" + motoqueiro.getNome() + ";" + motoqueiro.getTelefone() + ";" + motoqueiro.getPlaca() + ";" + motoqueiro.isDisponivel());
+            writer.write(motoqueiro.getId() + ";" + motoqueiro.getNome() + ";" + motoqueiro.getTelefone() + ";" + motoqueiro.getPlaca() + ";" + motoqueiro.isDisponivel() + ";" + motoqueiro.getContaBancaria());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,13 +1,17 @@
 package br.com.corrida.service;
 
 import br.com.corrida.model.*;
+import br.com.corrida.service.MotoqueiroService;
 import br.com.corrida.enums.StatusCorrida;
+import br.com.corrida.enums.FormaDePagamento;
 import br.com.corrida.repository.*;
 import br.com.corrida.util.MenuUtil;
 
 public class CorridaService {
     private CorridaRepository corridaRepository;
     private MotoqueiroRepository motoqueiroRepository;
+    private MotoqueiroService motoqueiroService = new MotoqueiroService();
+    private FormaDePagamento formaDePagamento;
 
     public CorridaService() {
         this.corridaRepository = new CorridaRepository();
@@ -58,7 +62,15 @@ public class CorridaService {
             corrida.setStatus(StatusCorrida.FINALIZADA);
             motoqueiro.setDisponivel(true);
             corridaRepository.salvar(corrida);
-            System.out.println("Corrida finalizada. valor total: R$ " + corrida.getValor());
+            System.out.println("Corrida finalizada. Obrigado por usar nosso serviço!");
+
+            if (corrida.getUsuario().getFormaDePagamento() == FormaDePagamento.DINHEIRO ||
+                corrida.getUsuario().getFormaDePagamento() == FormaDePagamento.PIX) {
+                motoqueiroService.salarioCorrida(motoqueiro, corrida.getValor() * 0.85);
+            } else {
+                motoqueiroService.salarioCorrida(motoqueiro, corrida.getValor() * 0.75);
+            } 
+            motoqueiroRepository.salvar(motoqueiro);
         } else {
             corrida.setStatus(StatusCorrida.FINALIZADA);
             corridaRepository.salvar(corrida);

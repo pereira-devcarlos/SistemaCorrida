@@ -23,4 +23,8 @@ public class MotoqueiroService {
             this.motoqueiroRepository.salvar(motoqueiro);
         }
     }
+
+    public void salarioCorrida(Motoqueiro motoqueiro, double valor){
+        motoqueiro.setContaBancaria(motoqueiro.getContaBancaria() + valor);
+    }
 }

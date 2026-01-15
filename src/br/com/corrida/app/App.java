@@ -67,6 +67,27 @@ public class App {
 
                                 // Criar e solicitar uma nova corrida
                                 Corrida novaCorrida = new Corrida(usuario, distancia);
+
+                                MenuUtil.exibirFormasDePagamento();
+                                int formaPagamentoOpcao = scanner.nextInt();
+                                switch (formaPagamentoOpcao) {
+                                    case 1:
+                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
+                                        break;
+                                    case 2:
+                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_CREDITO);
+                                        break;
+                                    case 3:
+                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_DEBITO);
+                                        break;
+                                    case 4:
+                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.PIX);
+                                        break;
+                                    default:
+                                        System.out.println("Opção inválida. Definindo forma de pagamento como Dinheiro.");
+                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
+                                        break;
+                                }
                                 corridaService.solicitarCorrida(novaCorrida);
                             } else if (opcaoUsuario == 2) {
                                 System.out.println("Voltando ao Menu Inicial.");
