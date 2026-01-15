@@ -21,18 +21,27 @@ public class App {
 
         int opcao = 0;
         while (opcao != 4) {
+            // Exibir menu inicial
             MenuUtil.exibirMenuInicial();
+
+            // Ler opção do usuário
             opcao = scanner.nextInt();
             switch (opcao) {
+                // Opção 1: Usuário
                 case 1:
+                    // Exibir menu de login/cadastro de usuário
                     MenuUtil.exibirMenuLoginUsuario();
                     opcao = scanner.nextInt();
+                    
+                    // Opções de login ou cadastro
                     if (opcao == 1) {
                         System.out.println("Login de usuário selecionado.");
                         // Lógica de login aqui
                         System.out.print("Digite seu nome de usuario: ");
                         String nomeUsuario = scanner.next();
                         System.out.print("Digite seu telefone: ");
+
+                        // Validação do telefone com 8 dígitos
                         String telefoneUsuario;
                         do {
                             telefoneUsuario = scanner.next();
@@ -41,17 +50,22 @@ public class App {
                             }
                         } while (telefoneUsuario.length() != 8);
 
+                        // Verificar credenciais
                         Usuario usuario = usuarioService.buscarPorTelefone(telefoneUsuario);
                         String nomeMinusculo = nomeUsuario.toLowerCase();
                         if (usuario != null && usuario.getNome().toLowerCase().equals(nomeMinusculo)) {
                             System.out.println("Login bem-sucedido. Bem-vindo, " + usuario.getNome() + "!");
+
                             // Menu do usuário após login
                             MenuUtil.exibirMenuUsuario();
                             int opcaoUsuario = scanner.nextInt();
                             if (opcaoUsuario == 1) {
+                                // Opção de solicitar corrida
                                 System.out.println("Solicitação de corrida selecionada.");
                                 System.out.print("Digite a distância da corrida em km: ");
                                 double distancia = scanner.nextDouble();
+
+                                // Criar e solicitar uma nova corrida
                                 Corrida novaCorrida = new Corrida(usuario, distancia);
                                 corridaService.solicitarCorrida(novaCorrida);
                             } else if (opcaoUsuario == 2) {
@@ -60,21 +74,25 @@ public class App {
                                 System.out.println("Opção inválida. Voltando ao Menu Inicial.");
                             }
                         } else {
-                            System.out.println("Erro: Nome de usuário ou telefone inválido.");
+                            System.out.println("\nErro: Nome de usuário ou telefone inválido.");
                         }
                     } else
                     if (opcao == 2) {
+                        // Opção de cadastro de usuário
                         System.out.println("Cadastro de usuário selecionado.");
                         System.out.print("Digite o nome do usuário: ");
                         String nomeUsuario = scanner.next();
                         System.out.print("Digite o telefone do usuário: ");
                         String telefoneUsuario;
+                        // Validação do telefone com 8 dígitos
                         do {
                             telefoneUsuario = scanner.next();
                             if (telefoneUsuario.length() != 8) {
                                 System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
                             }
                         } while (telefoneUsuario.length() != 8);
+
+                        // Criar e cadastrar um novo usuário
                         Usuario novoUsuario = new Usuario(nomeUsuario, telefoneUsuario);
                         usuarioService.cadastrarUsuario(novoUsuario);
                     } else if (opcao == 3) {
