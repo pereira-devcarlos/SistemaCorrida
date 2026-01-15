@@ -68,4 +68,8 @@ public class UsuarioService {
             System.out.println("Erro: Usuário não encontrado.");
         }
     }
+
+    public Usuario buscarPorTelefone(String telefone) {
+        return usuarioRepository.buscarPorTelefone(telefone);
+    }
 }

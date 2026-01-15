@@ -11,9 +11,8 @@ public class Corrida {
     private StatusCorrida status;
 
     // Construtor
-    public Corrida(Usuario usuario, Motoqueiro motoqueiro, int valor) {
+    public Corrida(Usuario usuario, int valor) {
         this.usuario = usuario;
-        this.motoqueiro = motoqueiro;
         this.valor = valor;
     }
 

@@ -73,6 +73,17 @@ public class MotoqueiroRepository {
         return null;
     }
 
+    public ArrayList<Motoqueiro> listarDisponiveis() {
+        // Lógica para listar todos os motoqueiros disponíveis
+        ArrayList<Motoqueiro> disponiveis = new ArrayList<>();
+        for (Motoqueiro motoqueiro : motoqueiros) {
+            if (motoqueiro.isDisponivel()) {
+                disponiveis.add(motoqueiro);
+            }
+        }
+        return disponiveis;
+    }
+
     // Getters e Setters
     public ArrayList<Motoqueiro> getMotoqueiros() {
         return motoqueiros;
