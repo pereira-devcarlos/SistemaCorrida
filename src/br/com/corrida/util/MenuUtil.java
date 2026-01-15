@@ -36,9 +36,8 @@ public class MenuUtil {
 
     public static void exibirMenuMotoqueiro(){
         System.out.println("\nMenu Motoqueiro:");
-        System.out.println("1. Ver Corridas Disponíveis");
-        System.out.println("2. Atualizar Status de Disponibilidade");
-        System.out.println("3. Voltar ao Menu Inicial");
+        System.out.println("1. Atualizar Status de Disponibilidade");
+        System.out.println("2. Voltar ao Menu Inicial");
         System.out.print("Escolha uma opção: ");
     }
 

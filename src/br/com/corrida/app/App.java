@@ -57,43 +57,47 @@ public class App {
                             System.out.println("Login bem-sucedido. Bem-vindo, " + usuario.getNome() + "!");
 
                             // Menu do usuário após login
-                            MenuUtil.exibirMenuUsuario();
-                            int opcaoUsuario = scanner.nextInt();
-                            if (opcaoUsuario == 1) {
-                                // Opção de solicitar corrida
-                                System.out.println("Solicitação de corrida selecionada.");
-                                System.out.print("Digite a distância da corrida em km: ");
-                                double distancia = scanner.nextDouble();
-
-                                // Criar e solicitar uma nova corrida
-                                Corrida novaCorrida = new Corrida(usuario, distancia);
-
-                                MenuUtil.exibirFormasDePagamento();
-                                int formaPagamentoOpcao = scanner.nextInt();
-                                switch (formaPagamentoOpcao) {
-                                    case 1:
-                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
-                                        break;
-                                    case 2:
-                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_CREDITO);
-                                        break;
-                                    case 3:
-                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_DEBITO);
-                                        break;
-                                    case 4:
-                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.PIX);
-                                        break;
-                                    default:
-                                        System.out.println("Opção inválida. Definindo forma de pagamento como Dinheiro.");
-                                        novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
-                                        break;
+                            int opcaoUsuario = 0;
+                            do {
+                                MenuUtil.exibirMenuUsuario();
+                                opcaoUsuario = scanner.nextInt();
+                                
+                                if (opcaoUsuario == 1) {
+                                    // Opção de solicitar corrida
+                                    System.out.println("Solicitação de corrida selecionada.");
+                                    System.out.print("Digite a distância da corrida em km: ");
+                                    double distancia = scanner.nextDouble();
+    
+                                    // Criar e solicitar uma nova corrida
+                                    Corrida novaCorrida = new Corrida(usuario, distancia);
+    
+                                    MenuUtil.exibirFormasDePagamento();
+                                    int formaPagamentoOpcao = scanner.nextInt();
+                                    switch (formaPagamentoOpcao) {
+                                        case 1:
+                                            novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
+                                            break;
+                                        case 2:
+                                            novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_CREDITO);
+                                            break;
+                                        case 3:
+                                            novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.CARTAO_DEBITO);
+                                            break;
+                                        case 4:
+                                            novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.PIX);
+                                            break;
+                                        default:
+                                            System.out.println("Opção inválida. Definindo forma de pagamento como Dinheiro.");
+                                            novaCorrida.getUsuario().setFormaDePagamento(FormaDePagamento.DINHEIRO);
+                                            break;
+                                    }
+                                    corridaService.solicitarCorrida(novaCorrida);
+                                } else if (opcaoUsuario == 2) {
+                                    System.out.println("Voltando ao Menu Inicial.");
+                                } else {
+                                    System.out.println("Opção inválida. Voltando ao Menu Inicial.");
                                 }
-                                corridaService.solicitarCorrida(novaCorrida);
-                            } else if (opcaoUsuario == 2) {
-                                System.out.println("Voltando ao Menu Inicial.");
-                            } else {
-                                System.out.println("Opção inválida. Voltando ao Menu Inicial.");
-                            }
+                            } while (opcaoUsuario != 2);
                         } else {
                             System.out.println("\nErro: Nome de usuário ou telefone inválido.");
                         }
@@ -122,6 +126,47 @@ public class App {
                     break;
                 case 2:
                     MenuUtil.exibirMenuLoginMotoqueiro();
+                    int opcaoMotoqueiro = scanner.nextInt();
+
+                    if (opcaoMotoqueiro == 1) {
+                        System.out.println("Login de motoqueiro selecionado.");
+                        System.out.print("Digite seu nome de usuário: ");
+                        String nomeMotoqueiro = scanner.next();
+                        System.out.print("Digite seu telefone: ");
+                        String telefoneMotoqueiro;
+                        // Validação do telefone com 8 dígitos
+                        do {
+                            telefoneMotoqueiro = scanner.next();
+                            if (telefoneMotoqueiro.length() != 8) {
+                                System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
+                            }
+                        } while (telefoneMotoqueiro.length() != 8);
+
+                        // Verificar credenciais
+                        Motoqueiro motoqueiro = motoqueiroService.buscarPorTelefone(telefoneMotoqueiro);
+                        String nomeMinusculo = nomeMotoqueiro.toLowerCase();
+                        if (motoqueiro != null && motoqueiro.getNome().toLowerCase().equals(nomeMinusculo)) {
+                            System.out.println("Login bem-sucedido. Bem-vindo, " + motoqueiro.getNome() + "!");
+                            // Menu do motoqueiro após login
+                            int opcaoMotoqueiroMenu = 0;
+                            do {
+                                MenuUtil.exibirMenuMotoqueiro();
+                                opcaoMotoqueiroMenu = scanner.nextInt();
+                                
+                                if (opcaoMotoqueiroMenu == 1) {
+                                    System.out.println("Atualizando status de disponibilidade.");
+                                    
+                                } else if (opcaoMotoqueiroMenu == 2) {
+                                    System.out.println("Voltando ao Menu Inicial.");
+                                } else {
+                                    System.out.println("Opção inválida. Voltando ao Menu Inicial.");
+                                }
+                            } while (opcaoMotoqueiroMenu != 2);
+                        } else {
+                            System.out.println("\nErro: Nome de usuário ou telefone inválido.");
+                        }
+                    }
+
                     break;
                 case 3:
                     MenuUtil.exibirMenuDesenvolvedor();

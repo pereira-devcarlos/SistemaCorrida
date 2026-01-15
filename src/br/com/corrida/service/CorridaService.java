@@ -11,7 +11,6 @@ public class CorridaService {
     private CorridaRepository corridaRepository;
     private MotoqueiroRepository motoqueiroRepository;
     private MotoqueiroService motoqueiroService = new MotoqueiroService();
-    private FormaDePagamento formaDePagamento;
 
     public CorridaService() {
         this.corridaRepository = new CorridaRepository();
@@ -45,6 +44,7 @@ public class CorridaService {
     public void iniciarCorrida(Corrida corrida, Motoqueiro motoqueiro) {
         corrida.setMotoqueiro(motoqueiro);
         motoqueiro.setDisponivel(false);
+        motoqueiroRepository.atualizar(motoqueiro);
         corrida.setStatus(StatusCorrida.EM_ANDAMENTO);
         System.out.println("Corrida iniciada com o motoqueiro: " + motoqueiro.getNome());
         // Depois de 3s, finalizar a corrida
@@ -70,7 +70,7 @@ public class CorridaService {
             } else {
                 motoqueiroService.salarioCorrida(motoqueiro, corrida.getValor() * 0.75);
             } 
-            motoqueiroRepository.salvar(motoqueiro);
+            motoqueiroRepository.atualizar(motoqueiro);
         } else {
             corrida.setStatus(StatusCorrida.FINALIZADA);
             corridaRepository.salvar(corrida);

@@ -28,9 +28,20 @@ public class MotoqueiroService {
         motoqueiroRepository.atualizar(motoqueiro);
     }
 
+    public Motoqueiro buscarPorTelefone(String telefone){
+        return motoqueiroRepository.buscarPorTelefone(telefone);
+    }
+
+    public void atualizarDisponibilidade(Motoqueiro motoqueiro){
+        motoqueiro.setDisponivel(!motoqueiro.isDisponivel());
+        motoqueiroRepository.atualizar(motoqueiro);
+    }
+
     public void salarioCorrida(Motoqueiro motoqueiro, double valor){
         double valorFormatado = Math.round(valor * 100.0) / 100.0;
-        motoqueiro.setContaBancaria(motoqueiro.getContaBancaria() + valorFormatado);
+        double novoSaldo = motoqueiro.getContaBancaria() + valorFormatado;
+        novoSaldo = Math.round(novoSaldo * 100.0) / 100.0;
+        motoqueiro.setContaBancaria(novoSaldo);
         atualizarMotoqueiro(motoqueiro);
     }
 }
