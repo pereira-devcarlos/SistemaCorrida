@@ -193,7 +193,8 @@ public class App {
 
                     break;
                 case 3:
-                    MenuUtil.exibirMenuDesenvolvedor();
+                    System.out.println("Em manutenção: Menu Desenvolvedor indisponível no momento.");
+                    //MenuUtil.exibirMenuDesenvolvedor();
                     break;
                 case 4:
                     System.out.println("Saindo do sistema. Até mais!");
