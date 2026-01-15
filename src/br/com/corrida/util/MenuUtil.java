@@ -50,4 +50,12 @@ public class MenuUtil {
         System.out.println("4. Voltar ao Menu Inicial");
         System.out.print("Escolha uma opção: ");
     }
+
+    public static void exibirFormasDePagamento(){
+        System.out.println("\nFormas de Pagamento:");
+        System.out.println("1. Dinheiro");
+        System.out.println("2. Cartão de Crédito");
+        System.out.println("3. Carteira Digital");
+        System.out.print("Escolha uma forma de pagamento: ");
+    }
 }

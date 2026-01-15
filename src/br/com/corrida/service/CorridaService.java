@@ -57,7 +57,7 @@ public class CorridaService {
             corrida.setStatus(StatusCorrida.FINALIZADA);
             motoqueiro.setDisponivel(true);
             corridaRepository.salvar(corrida);
-            System.out.println("Corrida finalizada. Motoqueiro " + motoqueiro.getNome() + " agora está disponível.");
+            System.out.println("Corrida finalizada. valor total: R$ " + corrida.getValor());
         } else {
             corrida.setStatus(StatusCorrida.FINALIZADA);
             corridaRepository.salvar(corrida);
