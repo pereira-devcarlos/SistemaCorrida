@@ -18,7 +18,7 @@ public class CorridaService {
     public void solicitarCorrida(Corrida corrida) {
         corrida.setStatus(StatusCorrida.SOLICITADA);
         corrida.setId(corridaRepository.gerarNovoId());
-        corrida.setValor((int) calcularValorCorrida(corrida.getDistancia()));
+        corrida.setValor(calcularValorCorrida(corrida.getDistancia()));
         System.out.println("Corrida solicitada com sucesso. ID da corrida: " + corrida.getId());
         // Aguardar disponibilidade de motoqueiro
         try {

@@ -8,16 +8,16 @@ public class Corrida {
     private Usuario usuario;
     private Motoqueiro motoqueiro;
     private double distancia;
-    private int valor;
+    private double valor;
     private StatusCorrida status;
 
     // Construtor
     public Corrida() {
     }
 
-    public Corrida(Usuario usuario, int valor) {
+    public Corrida(Usuario usuario, double distancia) {
         this.usuario = usuario;
-        this.valor = valor;
+        this.distancia = distancia;
     }
 
     // Getters e Setters
@@ -53,11 +53,11 @@ public class Corrida {
         this.distancia = distancia;
     }
 
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

@@ -51,9 +51,7 @@ public class App {
                                 System.out.println("Solicitação de corrida selecionada.");
                                 System.out.print("Digite a distância da corrida em km: ");
                                 double distancia = scanner.nextDouble();
-                                Corrida novaCorrida = new Corrida();
-                                novaCorrida.setUsuario(usuario);
-                                novaCorrida.setDistancia(distancia);
+                                Corrida novaCorrida = new Corrida(usuario, distancia);
                                 System.out.println("Valor estimado da corrida: R$ " + corridaService.calcularValorCorrida(distancia));
                                 corridaService.solicitarCorrida(novaCorrida);
                             } else if (opcaoUsuario == 2) {
@@ -97,5 +95,6 @@ public class App {
                     break;
             }
         }
+        scanner.close();
     }
 }
