@@ -142,7 +142,7 @@ Garante segurança e clareza no controle de estados do sistema.
 3. Execute a classe:
 
 ```java
-Main.java
+App.java
 ```
 
 4. Utilize o menu no console para interagir com o sistema
