@@ -3,11 +3,9 @@ package br.com.corrida.service;
 import br.com.corrida.model.*;
 import br.com.corrida.enums.StatusCorrida;
 import br.com.corrida.repository.*;
-import br.com.corrida.service.*;
 
 public class CorridaService {
     private CorridaRepository corridaRepository;
-    private UsuarioService usuarioService;
     private MotoqueiroRepository motoqueiroRepository;
 
     public CorridaService() {

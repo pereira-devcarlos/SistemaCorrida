@@ -11,6 +11,9 @@ public class Corrida {
     private StatusCorrida status;
 
     // Construtor
+    public Corrida() {
+    }
+
     public Corrida(Usuario usuario, int valor) {
         this.usuario = usuario;
         this.valor = valor;
