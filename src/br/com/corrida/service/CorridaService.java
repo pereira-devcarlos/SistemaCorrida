@@ -33,8 +33,9 @@ public class CorridaService {
             e.printStackTrace();
         }
 
-        if (motoqueiroRepository.listarDisponiveis().size() > 0) {
-            Motoqueiro motoqueiro = motoqueiroRepository.listarDisponiveis().get(0);
+        // Verificar motoqueiros disponíveis
+        if (motoqueiroService.listarDisponiveis().size() > 0) {
+            Motoqueiro motoqueiro = motoqueiroService.listarDisponiveis().get(0);
             iniciarCorrida(corrida, motoqueiro);
         } else {
             finalizarCorrida(corrida, null);
@@ -44,7 +45,6 @@ public class CorridaService {
     public void iniciarCorrida(Corrida corrida, Motoqueiro motoqueiro) {
         corrida.setMotoqueiro(motoqueiro);
         motoqueiro.setDisponivel(false);
-        motoqueiroRepository.atualizar(motoqueiro);
         corrida.setStatus(StatusCorrida.EM_ANDAMENTO);
         System.out.println("Corrida iniciada com o motoqueiro: " + motoqueiro.getNome());
         // Depois de 3s, finalizar a corrida
@@ -70,10 +70,10 @@ public class CorridaService {
             } else {
                 motoqueiroService.salarioCorrida(motoqueiro, corrida.getValor() * 0.75);
             } 
-            motoqueiroRepository.atualizar(motoqueiro);
+            motoqueiroService.atualizarMotoqueiro(motoqueiro);
         } else {
             corrida.setStatus(StatusCorrida.FINALIZADA);
-            corridaRepository.salvar(corrida);
+            corridaRepository.salvarCorridaCancelada(corrida);
             System.out.println("Corrida finalizada sem motoqueiro disponível.");
         }
     }

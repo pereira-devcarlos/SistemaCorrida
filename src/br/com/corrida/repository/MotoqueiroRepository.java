@@ -22,6 +22,8 @@ public class MotoqueiroRepository {
 
     public void carregarDados() {
         // Lógica para carregar os dados dos motoqueiros do banco de dados para a memória usando um ArrayList
+        motoqueiros.clear(); // Limpa a lista antes de carregar os dados
+
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -96,8 +98,9 @@ public class MotoqueiroRepository {
     }
 
     public ArrayList<Motoqueiro> listarDisponiveis() {
-        // Lógica para listar todos os motoqueiros disponíveis
-        ArrayList<Motoqueiro> disponiveis = new ArrayList<>();
+        // Lógica para listar todos os motoqueiros disponíveis do arquivo txt
+        carregarDados();
+        ArrayList<Motoqueiro> disponiveis = new ArrayList<Motoqueiro>();
         for (Motoqueiro motoqueiro : motoqueiros) {
             if (motoqueiro.isDisponivel()) {
                 disponiveis.add(motoqueiro);

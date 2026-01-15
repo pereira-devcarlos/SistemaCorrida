@@ -3,6 +3,8 @@ package br.com.corrida.service;
 import br.com.corrida.model.Motoqueiro;
 import br.com.corrida.repository.MotoqueiroRepository;
 
+import java.util.ArrayList;
+
 public class MotoqueiroService {
     // Atributos
     private MotoqueiroRepository motoqueiroRepository;
@@ -32,8 +34,13 @@ public class MotoqueiroService {
         return motoqueiroRepository.buscarPorTelefone(telefone);
     }
 
+    public ArrayList<Motoqueiro> listarDisponiveis(){
+        return motoqueiroRepository.listarDisponiveis();
+    }
+
     public void atualizarDisponibilidade(Motoqueiro motoqueiro){
         motoqueiro.setDisponivel(!motoqueiro.isDisponivel());
+        System.out.println("\nDepuração: " + motoqueiro.isDisponivel());
         motoqueiroRepository.atualizar(motoqueiro);
     }
 

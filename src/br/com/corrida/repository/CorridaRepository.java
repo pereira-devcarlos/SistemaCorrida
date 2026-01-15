@@ -53,6 +53,20 @@ public class CorridaRepository {
         corridas.add(corrida);
     }
 
+    public void salvarCorridaCancelada(Corrida corrida) {
+        // Salvar corrida cancelada no arquivo txt
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            String linha = corrida.getId() + ";" + corrida.getUsuario().getTelefone() + ";" +
+                           "N/A" + ";" + "0.0" + ";" +
+                           corrida.getStatus();
+            writer.write(linha);
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar corrida cancelada: " + e.getMessage());
+        }
+        corridas.add(corrida);
+    }
+
     public int gerarNovoId() {
         int maxId = 0;
         for (Corrida corrida : corridas) {

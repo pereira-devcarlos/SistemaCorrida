@@ -5,7 +5,6 @@ import br.com.corrida.model.*;
 import java.util.Scanner;
 
 import br.com.corrida.enums.*;
-import br.com.corrida.repository.*;
 import br.com.corrida.service.*;
 import br.com.corrida.util.*;
 
@@ -155,7 +154,7 @@ public class App {
                                 
                                 if (opcaoMotoqueiroMenu == 1) {
                                     System.out.println("Atualizando status de disponibilidade.");
-                                    
+                                    motoqueiroService.atualizarDisponibilidade(motoqueiro);
                                 } else if (opcaoMotoqueiroMenu == 2) {
                                     System.out.println("Voltando ao Menu Inicial.");
                                 } else {
