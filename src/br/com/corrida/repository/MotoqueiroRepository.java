@@ -65,6 +65,26 @@ public class MotoqueiroRepository {
         motoqueiros.add(motoqueiro);
     }
 
+    public void atualizar(Motoqueiro motoqueiro) {
+        // Lógica para atualizar os dados do motoqueiro no banco de dados
+        // Primeiro, atualiza a lista em memória
+        for (int i = 0; i < motoqueiros.size(); i++) {
+            if (motoqueiros.get(i).getId() == motoqueiro.getId()) {
+                motoqueiros.set(i, motoqueiro);
+                break;
+            }
+        }
+        // Depois, reescreve todo o arquivo com os dados atualizados
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Motoqueiro m : motoqueiros) {
+                writer.write(m.getId() + ";" + m.getNome() + ";" + m.getTelefone() + ";" + m.getPlaca() + ";" + m.isDisponivel() + ";" + m.getContaBancaria());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Motoqueiro buscarPorTelefone(String telefone) {
         // Lógica para buscar um motoqueiro pelo telefone
         for (Motoqueiro motoqueiro : motoqueiros) {

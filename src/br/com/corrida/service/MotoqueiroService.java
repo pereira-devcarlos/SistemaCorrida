@@ -24,7 +24,13 @@ public class MotoqueiroService {
         }
     }
 
+    public void atualizarMotoqueiro(Motoqueiro motoqueiro){
+        motoqueiroRepository.atualizar(motoqueiro);
+    }
+
     public void salarioCorrida(Motoqueiro motoqueiro, double valor){
-        motoqueiro.setContaBancaria(motoqueiro.getContaBancaria() + valor);
+        double valorFormatado = Math.round(valor * 100.0) / 100.0;
+        motoqueiro.setContaBancaria(motoqueiro.getContaBancaria() + valorFormatado);
+        atualizarMotoqueiro(motoqueiro);
     }
 }
