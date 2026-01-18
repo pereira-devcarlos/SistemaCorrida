@@ -50,6 +50,33 @@ public class MenuUtil {
         System.out.print("Escolha uma opção: ");
     }
 
+    public static void exibirGerenciarUsuario() {
+        System.out.println("\nGerenciar Usuários:");
+        System.out.println("1. Listar Usuários");
+        System.out.println("2. Adicionar Usuário");
+        System.out.println("3. Remover Usuário");
+        System.out.println("4. Voltar ao Menu Desenvolvedor");
+        System.out.print("Escolha uma opção: ");
+    }
+
+    public static void exibirGerenciarMotoqueiro() {
+        System.out.println("\nGerenciar Motoqueiros:");
+        System.out.println("1. Listar Motoqueiros");
+        System.out.println("2. Adicionar Motoqueiro");
+        System.out.println("3. Remover Motoqueiro");
+        System.out.println("4. Voltar ao Menu Desenvolvedor");
+        System.out.print("Escolha uma opção: ");
+    }
+
+    public static void exibirRelatoriosCorridas() {
+        System.out.println("\nRelatórios de Corridas:");
+        System.out.println("1. Ver Todas as Corridas");
+        System.out.println("2. Ver Corridas por Usuário");
+        System.out.println("3. Ver Corridas por Motoqueiro");
+        System.out.println("4. Voltar ao Menu Desenvolvedor");
+        System.out.print("Escolha uma opção: ");
+    }
+
     public static void exibirFormasDePagamento(){
         System.out.println("\nFormas de Pagamento:");
         System.out.println("1. Dinheiro");
