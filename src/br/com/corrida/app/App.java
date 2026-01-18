@@ -193,6 +193,7 @@ public class App {
 
                     break;
                 case 3:
+                    // Acesso de Desenvolvedor
                     System.out.print("Digite a senha de desenvolvedor: ");
                     String senhaDesenvolvedor = scanner.next();
                     if (!senhaDesenvolvedor.equals("devcarlos321")) {
@@ -209,29 +210,49 @@ public class App {
                                 MenuUtil.exibirGerenciarUsuario();
                                 int opcaoGerenciarUsuario = scanner.nextInt();
                                 if (opcaoGerenciarUsuario == 1) {
-                                    usuarioService.listarUsuarios();
+                                    System.out.println("Lista de Usuários:");
+                                    System.out.println(usuarioService.toString());
                                 } else if (opcaoGerenciarUsuario == 2) {
                                     System.out.print("Digite o nome do novo usuário: ");
                                     String nomeNovoUsuario = scanner.next();
                                     System.out.print("Digite o telefone do novo usuário: ");
-                                    String telefoneNovoUsuario = scanner.next();
+                                    String telefoneNovoUsuario;
+                                    // Validação do telefone com 8 dígitos
+                                    do {
+                                        telefoneNovoUsuario = scanner.next();
+                                        if (telefoneNovoUsuario.length() != 8) {
+                                            System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
+                                        }
+                                    } while (telefoneNovoUsuario.length() != 8);
+
                                     Usuario usuarioParaAdicionar = new Usuario(nomeNovoUsuario, telefoneNovoUsuario);
                                     usuarioService.cadastrarUsuario(usuarioParaAdicionar);
                                 } else if (opcaoGerenciarUsuario == 3) {
                                     System.out.print("Digite o telefone do usuário a ser removido: ");
                                     String telefoneRemover = scanner.next();
-                                    usuarioService.removerUsuario(telefoneRemover);
+                                    usuarioService.deletarUsuario(telefoneRemover);
+                                } else if (opcaoGerenciarUsuario == 4) {
+                                    System.out.println("Voltando ao Menu Desenvolvedor.");
+                                } else {
+                                    System.out.println("Opção inválida. Voltando ao Menu Desenvolvedor.");
                                 }
                                 break;
                             case 2:
                                 // Gerenciar Motoqueiros
-                                motoqueiroService.listarMotoqueiros();
+                                //motoqueiroService.listarMotoqueiros();
                                 break;
                             case 3:
                                 // Ver Relatórios de Corridas
                                 MenuUtil.exibirRelatoriosCorridas();
+                                break;
+                            case 4:
+                                System.out.println("Voltando ao Menu Inicial.");
+                                break;
+                            default:
+                                System.out.println("Opção inválida. Tente novamente.");
+                                break;
+                            }
                     }
-
                     break;
                 case 4:
                     System.out.println("Saindo do sistema. Até mais!");
