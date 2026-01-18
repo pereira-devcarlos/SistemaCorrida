@@ -40,6 +40,16 @@ public class MotoqueiroService {
         return motoqueiroRepository.buscarPorTelefone(telefone);
     }
 
+    public void deletarMotoqueiro(String telefone){
+        Motoqueiro motoqueiro = motoqueiroRepository.buscarPorTelefone(telefone);
+        if (motoqueiro != null) {
+            motoqueiroRepository.deletar(motoqueiro);
+            System.out.println("Motoqueiro " + motoqueiro.getNome() + " removido com sucesso.");
+        } else {
+            System.out.println("Erro: Motoqueiro com telefone " + telefone + " não encontrado.");
+        }
+    }
+
     public ArrayList<Motoqueiro> listarDisponiveis(){
         return motoqueiroRepository.listarDisponiveis();
     }

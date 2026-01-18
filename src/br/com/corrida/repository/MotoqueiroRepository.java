@@ -103,6 +103,21 @@ public class MotoqueiroRepository {
         }
     }
 
+    public void deletar(Motoqueiro motoqueiro) {
+        // Lógica para deletar o motoqueiro do banco de dados
+        // Primeiro, remove o motoqueiro da lista em memória
+        motoqueiros.removeIf(m -> m.getId() == motoqueiro.getId());
+        // Depois, reescreve todo o arquivo sem o motoqueiro deletado
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Motoqueiro m : motoqueiros) {
+                writer.write(m.getId() + ";" + m.getNome() + ";" + m.getTelefone() + ";" + m.getPlaca() + ";" + m.isDisponivel() + ";" + m.getContaBancaria());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Motoqueiro buscarPorTelefone(String telefone) {
         // Lógica para buscar um motoqueiro pelo telefone
         for (Motoqueiro motoqueiro : motoqueiros) {

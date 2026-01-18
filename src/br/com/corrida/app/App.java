@@ -240,9 +240,10 @@ public class App {
                                 }
                                 break;
                             case 2:
-                                MenuUtil.exibirGerenciarMotoqueiro();
                                 int opcaoGerenciarMotoqueiro = 0;
                                 while (opcaoGerenciarMotoqueiro != 4) {
+                                    MenuUtil.exibirGerenciarMotoqueiro();
+                                    opcaoGerenciarMotoqueiro = scanner.nextInt();
                                     switch (opcaoGerenciarMotoqueiro) {
                                         case 1:
                                             System.out.println("Lista de Motoqueiros:");
@@ -265,6 +266,11 @@ public class App {
             
                                             Motoqueiro motoqueiroParaAdicionar = new Motoqueiro(nomeNovoMotoqueiro, telefoneNovoMotoqueiro, placaNovaMoto);
                                             motoqueiroService.cadastrarMotoqueiro(motoqueiroParaAdicionar);
+                                            break;
+                                        case 3:
+                                            System.out.print("Digite o telefone do motoqueiro a ser removido: ");
+                                            String telefoneRemoverMotoqueiro = scanner.next();
+                                            motoqueiroService.deletarMotoqueiro(telefoneRemoverMotoqueiro);
                                             break;
                                         default:
                                             break;
