@@ -272,14 +272,32 @@ public class App {
                                             String telefoneRemoverMotoqueiro = scanner.next();
                                             motoqueiroService.deletarMotoqueiro(telefoneRemoverMotoqueiro);
                                             break;
+                                        case 4:
+                                            System.out.println("Voltando ao Menu Desenvolvedor.");
+                                            break;
                                         default:
+                                            System.out.println("Opção inválida. Tente novamente.");
                                             break;
                                     }
                                 }
                                 break;
                             case 3:
-                                // Ver Relatórios de Corridas
-                                MenuUtil.exibirRelatoriosCorridas();
+                                int opcaoRelatorios = 0;
+                                while (opcaoRelatorios != 4) {
+                                    MenuUtil.exibirRelatoriosCorridas();
+                                    opcaoRelatorios = scanner.nextInt();
+                                    switch (opcaoRelatorios) {
+                                        case 1:
+                                            // Ver todas as corridas
+                                            System.out.println("Relatório de Todas as Corridas:");
+                                            corridaService.listarTodasCorridas();
+                                            break;
+                                    
+                                        default:
+                                            break;
+                                    }
+
+                                }
                                 break;
                             case 4:
                                 System.out.println("Voltando ao Menu Inicial.");

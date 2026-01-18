@@ -81,4 +81,8 @@ public class CorridaService {
         double valor = distancia * valorPorKm;
         return (valor < 10.0) ? 10.0 : valor; // Valor mínimo de 10.0
     }
+
+    public void listarTodasCorridas() {
+        System.out.println(corridaRepository.toString());
+    }
 }

@@ -8,15 +8,35 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 
 import br.com.corrida.model.Corrida;
+import br.com.corrida.model.Motoqueiro;
+import br.com.corrida.model.Usuario;
+import br.com.corrida.repository.MotoqueiroRepository;
+import br.com.corrida.repository.UsuarioRepository;
 
 public class CorridaRepository {
     // Atributos
     private ArrayList<Corrida> corridas;
+    private MotoqueiroRepository motoqueiroRepository = new MotoqueiroRepository();
+    private UsuarioRepository usuarioRepository = new UsuarioRepository();
     String fileName = "C:\\Users\\monic\\OneDrive\\Documentos\\SistemaCorrida\\data\\corrida.txt";
 
     // Construtor
     public CorridaRepository() {
         this.corridas = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Corrida corrida : corridas) {
+            sb.append("ID: ").append(corrida.getId())
+              .append(", Usuário: ").append((corrida.getUsuario() != null) ? corrida.getUsuario().getNome() : "N/A")
+              .append(", Motoqueiro: ").append((corrida.getMotoqueiro() != null) ? corrida.getMotoqueiro().getNome() : "N/A")
+              .append(", Valor: R$ ").append(corrida.getValor())
+              .append(", Status: ").append(corrida.getStatus())
+              .append("\n");
+        }
+        return sb.toString();
     }
 
     public void carregarDados() {
@@ -28,8 +48,9 @@ public class CorridaRepository {
                 if (partes.length == 5) {
                     Corrida corrida = new Corrida(null, Double.parseDouble(partes[3]));
                     corrida.setId(Integer.parseInt(partes[0]));
-                    corrida.setMotoqueiro(null);
-                    // Note: Usuario and Motoqueiro should be set by their respective services
+                    corrida.setUsuario(usuarioRepository.buscarPorTelefone(partes[1]));
+                    corrida.setMotoqueiro(motoqueiroRepository.buscarPorTelefone(partes[2]));
+                    corrida.setValor(Double.parseDouble(partes[3]));
                     corrida.setStatus(Enum.valueOf(br.com.corrida.enums.StatusCorrida.class, partes[4]));
                     corridas.add(corrida);
                 }
