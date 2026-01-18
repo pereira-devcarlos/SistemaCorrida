@@ -15,6 +15,12 @@ public class MotoqueiroService {
         this.motoqueiroRepository.carregarDados();
     }
 
+    @Override
+    public String toString() {
+        // Listar todos os motoqueiros
+        return motoqueiroRepository.toString();
+    }
+
     public void cadastrarMotoqueiro(Motoqueiro motoqueiro) {
         // Lógica para cadastrar um novo motoqueiro
         if (motoqueiroRepository.buscarPorTelefone(motoqueiro.getTelefone()) != null) {

@@ -201,9 +201,11 @@ public class App {
                         break;
                     }
 
-                    MenuUtil.exibirMenuDesenvolvedor();
-                    int opcaoDesenvolvedor = scanner.nextInt();
+                    int opcaoDesenvolvedor = 0;
                     while (opcaoDesenvolvedor != 4) {
+                        MenuUtil.exibirMenuDesenvolvedor();
+                        opcaoDesenvolvedor = scanner.nextInt();
+
                         switch (opcaoDesenvolvedor) {
                             case 1:
                                 // Gerenciar Usuários
@@ -238,8 +240,12 @@ public class App {
                                 }
                                 break;
                             case 2:
-                                // Gerenciar Motoqueiros
-                                //motoqueiroService.listarMotoqueiros();
+                                MenuUtil.exibirGerenciarMotoqueiro();
+                                int opcaoGerenciarMotoqueiro = scanner.nextInt();
+                                if (opcaoGerenciarMotoqueiro == 1) {
+                                    System.out.println("Lista de Motoqueiros:");
+                                    System.out.println(motoqueiroService.toString());
+                                }
                                 break;
                             case 3:
                                 // Ver Relatórios de Corridas

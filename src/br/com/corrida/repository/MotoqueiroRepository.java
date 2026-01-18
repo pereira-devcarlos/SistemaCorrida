@@ -20,6 +20,21 @@ public class MotoqueiroRepository {
         this.motoqueiros = new ArrayList<Motoqueiro>();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Motoqueiro motoqueiro : motoqueiros) {
+            sb.append("ID: ").append(motoqueiro.getId())
+              .append(", Nome: ").append(motoqueiro.getNome())
+              .append(", Telefone: ").append(motoqueiro.getTelefone())
+              .append(", Placa: ").append(motoqueiro.getPlaca())
+              .append(", Disponível: ").append(motoqueiro.isDisponivel())
+              .append(", Conta Bancária: ").append(motoqueiro.getContaBancaria())
+              .append("\n");
+        }
+        return sb.toString();
+    }
+
     public void carregarDados() {
         // Lógica para carregar os dados dos motoqueiros do banco de dados para a memória usando um ArrayList
         motoqueiros.clear(); // Limpa a lista antes de carregar os dados
