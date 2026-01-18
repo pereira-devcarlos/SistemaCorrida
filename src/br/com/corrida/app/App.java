@@ -292,7 +292,18 @@ public class App {
                                             System.out.println("Relatório de Todas as Corridas:");
                                             corridaService.listarTodasCorridas();
                                             break;
-                                    
+                                        case 2:
+                                            // Ver corridas por usuário
+                                            System.out.print("Digite o telefone do usuário para ver suas corridas: ");
+                                            String telefoneUsuarioRelatorio = scanner.next();
+                                            Usuario usuarioRelatorio = usuarioService.buscarPorTelefone(telefoneUsuarioRelatorio);
+                                            if (usuarioRelatorio != null) {
+                                                System.out.println("Relatório de Corridas do Usuário " + usuarioRelatorio.getNome() + ":");
+                                                corridaService.listarCorridasPorUsuario(usuarioRelatorio);
+                                            } else {
+                                                System.out.println("Usuário não encontrado.");
+                                            }
+                                            break;
                                         default:
                                             break;
                                     }

@@ -119,7 +119,9 @@ public class MotoqueiroRepository {
     }
 
     public Motoqueiro buscarPorTelefone(String telefone) {
-        // Lógica para buscar um motoqueiro pelo telefone
+        // Lógica para buscar um motoqueiro pelo telefone no arquivo txt
+        motoqueiros.clear();
+        carregarDados();
         for (Motoqueiro motoqueiro : motoqueiros) {
             if (motoqueiro.getTelefone().equals(telefone)) {
                 return motoqueiro;

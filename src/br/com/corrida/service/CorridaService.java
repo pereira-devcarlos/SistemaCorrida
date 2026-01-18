@@ -85,4 +85,13 @@ public class CorridaService {
     public void listarTodasCorridas() {
         System.out.println(corridaRepository.toString());
     }
+
+    public void listarCorridasPorUsuario(Usuario usuario) {
+        for (Corrida corrida : corridaRepository.getCorridas()) {
+            if (corrida.getUsuario().getTelefone().equals(usuario.getTelefone())) {
+                System.out.println("ID: " + corrida.getId() + ", Motoqueiro: " + (corrida.getMotoqueiro() != null ? corrida.getMotoqueiro().getNome() : "Nenhum") + ", Valor: R$ " + corrida.getValor() +
+                                   ", Status: " + corrida.getStatus());
+            }
+        }
+    }
 }

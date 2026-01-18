@@ -8,10 +8,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 
 import br.com.corrida.model.Corrida;
-import br.com.corrida.model.Motoqueiro;
-import br.com.corrida.model.Usuario;
-import br.com.corrida.repository.MotoqueiroRepository;
-import br.com.corrida.repository.UsuarioRepository;
 
 public class CorridaRepository {
     // Atributos
@@ -96,5 +92,9 @@ public class CorridaRepository {
             }
         }
         return maxId + 1;
+    }
+
+    public ArrayList<Corrida> getCorridas() {
+        return corridas;
     }
 }
