@@ -193,6 +193,13 @@ public class App {
 
                     break;
                 case 3:
+                    System.out.print("Digite a senha de desenvolvedor: ");
+                    String senhaDesenvolvedor = scanner.next();
+                    if (!senhaDesenvolvedor.equals("devcarlos321")) {
+                        System.out.println("Senha incorreta. Acesso negado.");
+                        break;
+                    }
+
                     MenuUtil.exibirMenuDesenvolvedor();
                     int opcaoDesenvolvedor = scanner.nextInt();
                     while (opcaoDesenvolvedor != 4) {
