@@ -26,7 +26,7 @@ O sistema permite:
 * Login/Cadastro de motoqueiros
 * Solicitação de corridas
 * Associação de motoqueiro disponível
-* Escolha da forma de pagamento
+* Área de administração para gerenciar usuários, motoqueiros e corridas
 
 Tudo isso executado via **menu no console**, com os dados sendo **salvos e carregados a partir de arquivos `.txt`**, simulando uma camada de persistência.
 
@@ -69,7 +69,7 @@ SistemaCorridas
 
 ### `app`
 
-Contém a classe `Main`, responsável por iniciar o sistema e exibir o menu.
+Contém o método `Main`, responsável por iniciar o sistema e exibir o menu.
 
 ### `model`
 
@@ -113,25 +113,6 @@ Exemplo:
 
 Classes auxiliares para organização do código, como menus e leitura de dados.
 
----
-
-## 🧩 Principais Conceitos Aplicados
-
-### ✔ Interface
-
-Usada para representar comportamentos, como forma de pagamento.
-
-### ✔ Polimorfismo
-
-Permite tratar diferentes implementações de forma uniforme.
-
-### ✔ Classe Abstrata
-
-Utilizada quando existe um conceito genérico que não deve ser instanciado diretamente.
-
-### ✔ Enum
-
-Garante segurança e clareza no controle de estados do sistema.
 
 ---
 
