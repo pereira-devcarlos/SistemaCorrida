@@ -304,6 +304,21 @@ public class App {
                                                 System.out.println("Usuário não encontrado.");
                                             }
                                             break;
+                                        case 3:
+                                            // Ver corridas por motoqueiro
+                                            System.out.print("Digite o telefone do motoqueiro para ver suas corridas: ");
+                                            String telefoneMotoqueiroRelatorio = scanner.next();
+                                            Motoqueiro motoqueiroRelatorio = motoqueiroService.buscarPorTelefone(telefoneMotoqueiroRelatorio);
+                                            if (motoqueiroRelatorio != null) {
+                                                System.out.println("Relatório de Corridas do Motoqueiro " + motoqueiroRelatorio.getNome() + ":");
+                                                corridaService.listarCorridasPorMotoqueiro(motoqueiroRelatorio);
+                                            } else {
+                                                System.out.println("Motoqueiro não encontrado.");
+                                            }
+                                            break;
+                                        case 4:
+                                            System.out.println("Voltando ao Menu Desenvolvedor.");
+                                            break;
                                         default:
                                             break;
                                     }

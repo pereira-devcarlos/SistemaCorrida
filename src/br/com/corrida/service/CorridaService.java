@@ -94,4 +94,13 @@ public class CorridaService {
             }
         }
     }
+
+    public void listarCorridasPorMotoqueiro(Motoqueiro motoqueiro) {
+        for (Corrida corrida : corridaRepository.getCorridas()) {
+            if (corrida.getMotoqueiro() != null && corrida.getMotoqueiro().getTelefone().equals(motoqueiro.getTelefone())) {
+                System.out.println("ID: " + corrida.getId() + ", Usuário: " + corrida.getUsuario().getNome() + ", Valor: R$ " + corrida.getValor() +
+                                   ", Status: " + corrida.getStatus());
+            }
+        }
+    }
 }
