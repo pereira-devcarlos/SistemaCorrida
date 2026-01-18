@@ -193,8 +193,38 @@ public class App {
 
                     break;
                 case 3:
-                    System.out.println("Em manutenção: Menu Desenvolvedor indisponível no momento.");
-                    //MenuUtil.exibirMenuDesenvolvedor();
+                    MenuUtil.exibirMenuDesenvolvedor();
+                    int opcaoDesenvolvedor = scanner.nextInt();
+                    while (opcaoDesenvolvedor != 4) {
+                        switch (opcaoDesenvolvedor) {
+                            case 1:
+                                // Gerenciar Usuários
+                                MenuUtil.exibirGerenciarUsuario();
+                                int opcaoGerenciarUsuario = scanner.nextInt();
+                                if (opcaoGerenciarUsuario == 1) {
+                                    usuarioService.listarUsuarios();
+                                } else if (opcaoGerenciarUsuario == 2) {
+                                    System.out.print("Digite o nome do novo usuário: ");
+                                    String nomeNovoUsuario = scanner.next();
+                                    System.out.print("Digite o telefone do novo usuário: ");
+                                    String telefoneNovoUsuario = scanner.next();
+                                    Usuario usuarioParaAdicionar = new Usuario(nomeNovoUsuario, telefoneNovoUsuario);
+                                    usuarioService.cadastrarUsuario(usuarioParaAdicionar);
+                                } else if (opcaoGerenciarUsuario == 3) {
+                                    System.out.print("Digite o telefone do usuário a ser removido: ");
+                                    String telefoneRemover = scanner.next();
+                                    usuarioService.removerUsuario(telefoneRemover);
+                                }
+                                break;
+                            case 2:
+                                // Gerenciar Motoqueiros
+                                motoqueiroService.listarMotoqueiros();
+                                break;
+                            case 3:
+                                // Ver Relatórios de Corridas
+                                MenuUtil.exibirRelatoriosCorridas();
+                    }
+
                     break;
                 case 4:
                     System.out.println("Saindo do sistema. Até mais!");
