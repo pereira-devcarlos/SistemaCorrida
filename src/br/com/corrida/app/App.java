@@ -193,16 +193,18 @@ public class App {
 
                     break;
                 case 3:
-                    // Acesso de Desenvolvedor
+                    // Validar senha de desenvolvedor
                     System.out.print("Digite a senha de desenvolvedor: ");
                     String senhaDesenvolvedor = scanner.next();
                     if (!senhaDesenvolvedor.equals("devcarlos321")) {
                         System.out.println("Senha incorreta. Acesso negado.");
                         break;
                     }
+                    System.out.println("Acesso de desenvolvedor concedido.");
 
                     int opcaoDesenvolvedor = 0;
                     while (opcaoDesenvolvedor != 4) {
+                        // Exibir menu de desenvolvedor
                         MenuUtil.exibirMenuDesenvolvedor();
                         opcaoDesenvolvedor = scanner.nextInt();
 
@@ -211,14 +213,20 @@ public class App {
                                 // Gerenciar Usuários
                                 MenuUtil.exibirGerenciarUsuario();
                                 int opcaoGerenciarUsuario = scanner.nextInt();
+
+                                // Ações de gerenciar usuários
                                 if (opcaoGerenciarUsuario == 1) {
+                                    // Listar usuários
                                     System.out.println("Lista de Usuários:");
                                     System.out.println(usuarioService.toString());
-                                } else if (opcaoGerenciarUsuario == 2) {
+                                } else 
+                                if (opcaoGerenciarUsuario == 2) {
+                                    // Adicionar usuário
                                     System.out.print("Digite o nome do novo usuário: ");
                                     String nomeNovoUsuario = scanner.next();
                                     System.out.print("Digite o telefone do novo usuário: ");
                                     String telefoneNovoUsuario;
+
                                     // Validação do telefone com 8 dígitos
                                     do {
                                         telefoneNovoUsuario = scanner.next();
@@ -227,33 +235,44 @@ public class App {
                                         }
                                     } while (telefoneNovoUsuario.length() != 8);
 
+                                    // Criar e cadastrar o novo usuário
                                     Usuario usuarioParaAdicionar = new Usuario(nomeNovoUsuario, telefoneNovoUsuario);
                                     usuarioService.cadastrarUsuario(usuarioParaAdicionar);
-                                } else if (opcaoGerenciarUsuario == 3) {
+                                } else 
+                                if (opcaoGerenciarUsuario == 3) {
+                                    // Remover usuário por telefone
                                     System.out.print("Digite o telefone do usuário a ser removido: ");
                                     String telefoneRemover = scanner.next();
                                     usuarioService.deletarUsuario(telefoneRemover);
-                                } else if (opcaoGerenciarUsuario == 4) {
+                                } else 
+                                if (opcaoGerenciarUsuario == 4) {
+                                    // Voltar ao menu desenvolvedor
                                     System.out.println("Voltando ao Menu Desenvolvedor.");
                                 } else {
                                     System.out.println("Opção inválida. Voltando ao Menu Desenvolvedor.");
                                 }
                                 break;
                             case 2:
+                                // Gerenciar Motoqueiros
                                 int opcaoGerenciarMotoqueiro = 0;
                                 while (opcaoGerenciarMotoqueiro != 4) {
+                                    // Exibir menu de gerenciar motoqueiros
                                     MenuUtil.exibirGerenciarMotoqueiro();
                                     opcaoGerenciarMotoqueiro = scanner.nextInt();
+
                                     switch (opcaoGerenciarMotoqueiro) {
+                                        // Listar motoqueiros
                                         case 1:
                                             System.out.println("Lista de Motoqueiros:");
                                             System.out.println(motoqueiroService.toString());
                                             break;
+                                        // Adicionar motoqueiro
                                         case 2:
                                             System.out.print("Digite o nome do novo motoqueiro: ");
                                             String nomeNovoMotoqueiro = scanner.next();
                                             System.out.print("Digite o telefone do novo motoqueiro: ");
                                             String telefoneNovoMotoqueiro;
+
                                             // Validação do telefone com 8 dígitos
                                             do {
                                                 telefoneNovoMotoqueiro = scanner.next();
@@ -261,18 +280,23 @@ public class App {
                                                     System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
                                                 }
                                             } while (telefoneNovoMotoqueiro.length() != 8);
+
+                                            // Solicitar a placa da moto
                                             System.out.print("Digite a placa da moto: ");
                                             String placaNovaMoto = scanner.next();
             
+                                            // Criar e cadastrar o novo motoqueiro
                                             Motoqueiro motoqueiroParaAdicionar = new Motoqueiro(nomeNovoMotoqueiro, telefoneNovoMotoqueiro, placaNovaMoto);
                                             motoqueiroService.cadastrarMotoqueiro(motoqueiroParaAdicionar);
                                             break;
                                         case 3:
+                                            // Remover motoqueiro por telefone
                                             System.out.print("Digite o telefone do motoqueiro a ser removido: ");
                                             String telefoneRemoverMotoqueiro = scanner.next();
                                             motoqueiroService.deletarMotoqueiro(telefoneRemoverMotoqueiro);
                                             break;
                                         case 4:
+                                            // Voltar ao menu desenvolvedor
                                             System.out.println("Voltando ao Menu Desenvolvedor.");
                                             break;
                                         default:
@@ -284,8 +308,10 @@ public class App {
                             case 3:
                                 int opcaoRelatorios = 0;
                                 while (opcaoRelatorios != 4) {
+                                    // Exibir menu de relatórios de corridas
                                     MenuUtil.exibirRelatoriosCorridas();
                                     opcaoRelatorios = scanner.nextInt();
+
                                     switch (opcaoRelatorios) {
                                         case 1:
                                             // Ver todas as corridas
@@ -297,6 +323,8 @@ public class App {
                                             System.out.print("Digite o telefone do usuário para ver suas corridas: ");
                                             String telefoneUsuarioRelatorio = scanner.next();
                                             Usuario usuarioRelatorio = usuarioService.buscarPorTelefone(telefoneUsuarioRelatorio);
+
+                                            // Verificar se o usuário existe
                                             if (usuarioRelatorio != null) {
                                                 System.out.println("Relatório de Corridas do Usuário " + usuarioRelatorio.getNome() + ":");
                                                 corridaService.listarCorridasPorUsuario(usuarioRelatorio);
@@ -309,6 +337,8 @@ public class App {
                                             System.out.print("Digite o telefone do motoqueiro para ver suas corridas: ");
                                             String telefoneMotoqueiroRelatorio = scanner.next();
                                             Motoqueiro motoqueiroRelatorio = motoqueiroService.buscarPorTelefone(telefoneMotoqueiroRelatorio);
+
+                                            // Verificar se o motoqueiro existe
                                             if (motoqueiroRelatorio != null) {
                                                 System.out.println("Relatório de Corridas do Motoqueiro " + motoqueiroRelatorio.getNome() + ":");
                                                 corridaService.listarCorridasPorMotoqueiro(motoqueiroRelatorio);
@@ -317,15 +347,17 @@ public class App {
                                             }
                                             break;
                                         case 4:
+                                            // Voltar ao menu desenvolvedor
                                             System.out.println("Voltando ao Menu Desenvolvedor.");
                                             break;
                                         default:
+                                            System.out.println("Opção inválida. Tente novamente.");
                                             break;
                                     }
-
                                 }
                                 break;
                             case 4:
+                                // Voltar ao menu inicial
                                 System.out.println("Voltando ao Menu Inicial.");
                                 break;
                             default:
@@ -335,6 +367,7 @@ public class App {
                     }
                     break;
                 case 4:
+                    // Sair do sistema
                     System.out.println("Saindo do sistema. Até mais!");
                     break;
                 default:
@@ -342,6 +375,7 @@ public class App {
                     break;
             }
         }
+        // Fechar o scanner
         scanner.close();
     }
 }
