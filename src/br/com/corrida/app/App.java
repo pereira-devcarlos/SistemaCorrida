@@ -241,10 +241,34 @@ public class App {
                                 break;
                             case 2:
                                 MenuUtil.exibirGerenciarMotoqueiro();
-                                int opcaoGerenciarMotoqueiro = scanner.nextInt();
-                                if (opcaoGerenciarMotoqueiro == 1) {
-                                    System.out.println("Lista de Motoqueiros:");
-                                    System.out.println(motoqueiroService.toString());
+                                int opcaoGerenciarMotoqueiro = 0;
+                                while (opcaoGerenciarMotoqueiro != 4) {
+                                    switch (opcaoGerenciarMotoqueiro) {
+                                        case 1:
+                                            System.out.println("Lista de Motoqueiros:");
+                                            System.out.println(motoqueiroService.toString());
+                                            break;
+                                        case 2:
+                                            System.out.print("Digite o nome do novo motoqueiro: ");
+                                            String nomeNovoMotoqueiro = scanner.next();
+                                            System.out.print("Digite o telefone do novo motoqueiro: ");
+                                            String telefoneNovoMotoqueiro;
+                                            // Validação do telefone com 8 dígitos
+                                            do {
+                                                telefoneNovoMotoqueiro = scanner.next();
+                                                if (telefoneNovoMotoqueiro.length() != 8) {
+                                                    System.out.print("Telefone inválido. Digite um telefone com 8 dígitos: ");
+                                                }
+                                            } while (telefoneNovoMotoqueiro.length() != 8);
+                                            System.out.print("Digite a placa da moto: ");
+                                            String placaNovaMoto = scanner.next();
+            
+                                            Motoqueiro motoqueiroParaAdicionar = new Motoqueiro(nomeNovoMotoqueiro, telefoneNovoMotoqueiro, placaNovaMoto);
+                                            motoqueiroService.cadastrarMotoqueiro(motoqueiroParaAdicionar);
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                                 break;
                             case 3:
