@@ -30,8 +30,12 @@ public class App {
                 case 1:
                     // Exibir menu de login/cadastro de usuário
                     MenuUtil.exibirMenuLoginUsuario();
+                    while (!scanner.hasNextInt()) {
+                        System.out.print("Por favor, insira um número válido para a opção: ");
+                        scanner.next();
+                    }
                     opcao = scanner.nextInt();
-                    
+
                     // Opções de login ou cadastro
                     if (opcao == 1) {
                         System.out.println("Login de usuário selecionado.");
@@ -125,6 +129,11 @@ public class App {
                     break;
                 case 2:
                     MenuUtil.exibirMenuLoginMotoqueiro();
+                    
+                    while (!scanner.hasNextInt()) {
+                        System.out.print("Entrada inválida. Por favor insira um número como opção: ");
+                        scanner.next();
+                    }
                     int opcaoMotoqueiro = scanner.nextInt();
 
                     if (opcaoMotoqueiro == 1) {
