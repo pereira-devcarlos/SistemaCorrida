@@ -12,7 +12,7 @@ import br.com.corrida.model.Usuario;
 public class UsuarioRepository {
     private ArrayList<Usuario> usuarios;
     // Definindo o caminho do arquivo de dados
-    String filename = "C:\\Users\\monic\\OneDrive\\Documentos\\SistemaCorrida\\data\\usuarios.txt";
+    String fileName = "data/usuarios.txt";
 
     public UsuarioRepository() {
         this.usuarios = new ArrayList<Usuario>();
@@ -20,7 +20,7 @@ public class UsuarioRepository {
 
     public void carregarDados() {
         // Lógica para carregar os dados dos usuários do banco de dados para a memória usando um ArrayList
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -49,7 +49,7 @@ public class UsuarioRepository {
 
     public void salvar(Usuario usuario) {
         // Lógica para salvar o usuário no banco de dados
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             writer.write(usuario.getId() + ";" + usuario.getNome() + ";" + usuario.getTelefone());
             writer.newLine();
         } catch (IOException e) {
@@ -59,7 +59,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorId(int id) {
         // Lógica para buscar o usuário pelo ID no banco de dados
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -78,7 +78,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorTelefone(String telefone) {
         // Lógica para buscar o usuário pelo telefone no banco de dados
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -96,7 +96,7 @@ public class UsuarioRepository {
 
     public void deletar(int id) {
         ArrayList<Usuario> usuariosAtualizados = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -110,7 +110,7 @@ public class UsuarioRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Usuario usuario : usuariosAtualizados) {
                 writer.write(usuario.getId() + ";" + usuario.getNome() + ";" + usuario.getTelefone());
                 writer.newLine();
@@ -122,7 +122,7 @@ public class UsuarioRepository {
 
     public void atualizar(Usuario usuarioAtualizado) {
         ArrayList<Usuario> usuariosAtualizados = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -138,7 +138,7 @@ public class UsuarioRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Usuario usuario : usuariosAtualizados) {
                 writer.write(usuario.getId() + ";" + usuario.getNome() + ";" + usuario.getTelefone());
                 writer.newLine();

@@ -14,7 +14,7 @@ public class CorridaRepository {
     private ArrayList<Corrida> corridas;
     private MotoqueiroRepository motoqueiroRepository = new MotoqueiroRepository();
     private UsuarioRepository usuarioRepository = new UsuarioRepository();
-    String fileName = "C:\\Users\\monic\\OneDrive\\Documentos\\SistemaCorrida\\data\\corrida.txt";
+    String fileName = "data/corridas.txt";
 
     // Construtor
     public CorridaRepository() {

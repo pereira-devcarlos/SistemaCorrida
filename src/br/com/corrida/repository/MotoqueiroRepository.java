@@ -13,7 +13,7 @@ public class MotoqueiroRepository {
     // Atributos
     private ArrayList<Motoqueiro> motoqueiros;
     // Definindo o caminho do arquivo de dados
-    String fileName = "C:\\Users\\monic\\OneDrive\\Documentos\\SistemaCorrida\\data\\motoqueiros.txt";
+    String fileName = "data/motoqueiros.txt";
 
     // Construtor
     public MotoqueiroRepository() {
